@@ -49,7 +49,6 @@ Author
 
 Gustavo Henrique da Costa
 
-vbnet
 
 
 This README.md provides instructions on how to use the Currency Converter Java application, including prerequisites, features, and usage steps.
@@ -93,8 +92,6 @@ Como Usar
         Escolha seu módulo e sua classe principal e salve as alterações.
         Agora vá para Build > Construir artefatos > construir* (reconstruir se necessário);
     Rode com:
-
-    bash
 
     java -jar .\com.allogica.ChallengeConversorMoedas.jar
 
