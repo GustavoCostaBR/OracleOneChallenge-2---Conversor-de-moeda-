@@ -30,8 +30,7 @@ public class JsonWorkerPersonalized <T> {
         return gson.fromJson(reader, listType);
     }
 
-    public String convertToJson(T object) {
-        return gson.toJson(object);
+    public String convertToJson(T object) {return gson.toJson(object);
     }
 
     public String convertToJson(List<T> listinha) {

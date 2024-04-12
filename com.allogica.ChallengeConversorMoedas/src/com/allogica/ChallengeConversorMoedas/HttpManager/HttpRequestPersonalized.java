@@ -13,10 +13,10 @@ public class HttpRequestPersonalized {
 
 
 
-    public HttpRequestPersonalized(String cepRequisition) {
+    public HttpRequestPersonalized(String requisition) {
         this.httpClient = HttpClient.newHttpClient();
         this.httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(cepRequisition))
+                .uri(URI.create(requisition))
                 .build();
         createResponse();
     }
@@ -25,14 +25,14 @@ public class HttpRequestPersonalized {
         this.httpClient = HttpClient.newHttpClient();
     }
 
-    public void requestNewCep(String cepRequisition){
+    public void requestNewConversion(String requisition){
         this.httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(cepRequisition))
+                .uri(URI.create(requisition))
                 .build();
         createResponse();
     }
 
-    public String getAddressBack(){
+    public String getBodyBack(){
         return this.response.body();
     }
 
