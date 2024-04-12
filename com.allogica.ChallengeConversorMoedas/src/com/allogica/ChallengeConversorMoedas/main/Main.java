@@ -22,7 +22,7 @@ public class Main {
         ConversionPairRequisition conversionPairRequisition = new ConversionPairRequisition();
         conversionPairList = conversionPairRequisition.getConversionBackFromJsonFile(fileName);
         if (conversionPairList == null) {
-            conversionPairList = new ArrayList<ConversionPair>();
+            conversionPairList = new ArrayList<>();
         }
 
         while (!(opcao.equals("7"))) {
@@ -109,8 +109,8 @@ public class Main {
             }
 //        Set<Address> addressSet = new TreeSet<>(Comparator.comparing(Address::cep));
 //        addressSet.addAll(conversionPairList);
-            Set<ConversionPair> conversionPairSet = new HashSet<>(conversionPairList);
-            conversionPairRequisition.saveAddressToJson(fileName, conversionPairSet);
+            Set<ConversionPair> conversionPairSet = new TreeSet<>(conversionPairList);
+            conversionPairRequisition.saveConversionToJson(fileName, conversionPairSet);
 
         }
     }

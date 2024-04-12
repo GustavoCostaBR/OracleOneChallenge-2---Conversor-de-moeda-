@@ -5,6 +5,7 @@ import com.allogica.ChallengeConversorMoedas.JsonManager.JsonFileReader;
 import com.allogica.ChallengeConversorMoedas.JsonManager.JsonFileWriter;
 import com.allogica.ChallengeConversorMoedas.JsonManager.JsonWorkerPersonalized;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,6 +18,8 @@ public class ConversionPairRequisition {
     private JsonFileReader jsonFileReader;
 
     private ConversionPair conversionPairToBeSaved;
+
+    private  ConversionPair conversionPairDTO;
 
     public ConversionPair getConversionPairToBeSaved() {
         return conversionPairToBeSaved;
@@ -40,9 +43,6 @@ public class ConversionPairRequisition {
 
     private double value;
 
-    public ConversionPairRequisition(double amount) {
-        this.amount = amount;
-    }
 
     public ConversionPairRequisition(Pairs currencyPair) {
         this.apiURL = "https://v6.exchangerate-api.com/v6/" + apiKey.apiKey() +"/pair/" + currencyPair.getPair();
@@ -69,11 +69,11 @@ public class ConversionPairRequisition {
         httpRequestPersonalized.requestNewConversion(apiURL);
         jsonWorkerPersonalized = new JsonWorkerPersonalized<ConversionPair>();
         String response = httpRequestPersonalized.getBodyBack();
-        conversionPairToBeSaved = (ConversionPair) jsonWorkerPersonalized.convertToObject(response, ConversionPair.class);
+        conversionPairDTO = (ConversionPair) jsonWorkerPersonalized.convertToObject(response, ConversionPair.class);
 
-        if (conversionPairToBeSaved != null)
+        if (conversionPairDTO != null)
         {
-            if (conversionPairToBeSaved.result().equals("success")){
+            if (conversionPairDTO.result().equals("success")){
                 System.out.println("A conversão foi feita como esperado!");
                 allright = true;
             }
@@ -105,14 +105,13 @@ public class ConversionPairRequisition {
             }
         }
         convertNewRequisition(pair);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String localDateTimeStr = localDateTime.toString();
         if (getAllright()){
-            this.value = getConversionPair().conversionRate()*amount;
-            conversionPairToBeSaved = new ConversionPair(conversionPairToBeSaved.result(), conversionPairToBeSaved.baseCode(), conversionPairToBeSaved.targetCode(), conversionPairToBeSaved.conversionRate(), this.amount, this.value);
+            this.value = conversionPairDTO.conversionRate()*amount;
+            conversionPairToBeSaved = new ConversionPair(conversionPairDTO.result(), conversionPairDTO.baseCode(), conversionPairDTO.targetCode(), conversionPairDTO.conversionRate(), this.amount, this.value, localDateTimeStr);
             printConversionPair();
         }
-    }
-    public ConversionPair getConversionPair() {
-        return conversionPairToBeSaved;
     }
 
     public void printConversionPair() {
@@ -131,11 +130,9 @@ public class ConversionPairRequisition {
         }
     }
 
-    public void saveAddressToJson(String fileName, Set<ConversionPair> conversionPairSet){
+    public void saveConversionToJson(String fileName, Set<ConversionPair> conversionPairSet){
         jsonFileWriter = new JsonFileWriter<ConversionPair>(fileName, false);
-
         jsonFileWriter.writeSetToJson(conversionPairSet);
-        System.out.println("Endereço nulo!");
     }
 
     public List<ConversionPair> getConversionBackFromJsonFile(String fileName){
