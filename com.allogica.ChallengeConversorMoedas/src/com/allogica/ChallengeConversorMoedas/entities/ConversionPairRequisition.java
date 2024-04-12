@@ -32,7 +32,8 @@ public class ConversionPairRequisition {
 
     public ConversionPairRequisition() {
         this.jsonFileReader = new JsonFileReader<ConversionPair>();
-        this.apiKey = (ApiKey) jsonFileReader.getStringFromFile("C:\\Users\\Gustavo\\Documents\\Planejamento\\ORACLE_ONE\\Cursos_Trilha_Java\\Curso_5-ChallengeConversorDeMoedas\\com.allogica.ChallengeConversorMoedas\\src\\com\\allogica\\ChallengeConversorMoedas\\mykey.json", ApiKey.class);
+//        this.apiKey = (ApiKey) jsonFileReader.getStringFromFile("C:\\Users\\Gustavo\\Documents\\Planejamento\\ORACLE_ONE\\Cursos_Trilha_Java\\Curso_5-ChallengeConversorDeMoedas\\com.allogica.ChallengeConversorMoedas\\src\\com\\allogica\\ChallengeConversorMoedas\\mykey.json", ApiKey.class);
+        this.apiKey = (ApiKey) jsonFileReader.getStringFromFile(".\\mykey.json", ApiKey.class);
     }
 
     private ApiKey apiKey;
