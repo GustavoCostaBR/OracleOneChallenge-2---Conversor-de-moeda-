@@ -10,6 +10,16 @@ import java.util.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
+    public static List<ConversionPair> menu(Pairs pair, List<ConversionPair> conversionPairList){
+        ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
+        conversionPairRequisition1.conversionMenu(pair);
+        if (conversionPairRequisition1.getAllright()) {
+            conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
+            System.out.println("Tudo certo com a conversão!");
+        }
+        return conversionPairList;
+    }
+
     public static void main(String[] args) {
         String opcao = "abacate";
         Scanner teclado = new Scanner(System.in);
@@ -24,6 +34,7 @@ public class Main {
         if (conversionPairList == null) {
             conversionPairList = new ArrayList<>();
         }
+
 
         while (!(opcao.equals("7"))) {
             System.out.println("""
@@ -42,62 +53,32 @@ public class Main {
             switch (opcao) {
                 case "1": {
                     pair = Pairs.USD_ARS;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "2": {
                     pair = Pairs.ARS_USD;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "3": {
                     pair = Pairs.USD_BRL;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "4": {
                     pair = Pairs.BRL_USD;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "5": {
                     pair = Pairs.USD_COP;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "6": {
                     pair = Pairs.COP_USD;
-                    ConversionPairRequisition conversionPairRequisition1 = new ConversionPairRequisition();
-                    conversionPairRequisition1.conversionMenu(pair);
-                    if (conversionPairRequisition1.getAllright()) {
-                        conversionPairList.add(conversionPairRequisition1.getConversionPairToBeSaved());
-                        System.out.println("Tudo certo com a conversão!");
-                    }
+                    menu(pair, conversionPairList);
                     break;
                 }
                 case "7": {
